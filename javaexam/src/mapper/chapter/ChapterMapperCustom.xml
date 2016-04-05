@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.chapter.ChapterMapperCustom" >
+  
+   <!-- 查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查查 -->
+ 
+  
+   <!-- 根据id查询章节 -->
+   
+   <select id="findChapterCustomById" parameterType="Chapter" resultType="ChapterCustom">
+   
+     select * from chapter  where id=#{id}
+   
+   </select>
+   
+   <!-- 批量查询>>>>>>>>>>>>>>>>>>>>批量查询<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<批量查询 -->
+   
+   <!-- 查询所有章节 -->
+   <select id="findAllChapter" resultType="Chapter">
+     select * from chapter
+   </select>
+   
+   <!-- 根据ids批量查询 -->
+   
+   <select id="findChapterByIds" parameterType="java.util.List" resultType="Chapter">
+   
+      select * 
+      from chapter
+      <where>
+        <!-- 传递List，List中是pojo -->
+        <if test="list!=null">
+         <foreach collection="list" item="item" 
+           open="and id in(" close=")"  separator=",">
+           #{item.id} 
+         </foreach>
+       </if>
+     </where>
+    
+   </select> 
+  
+   
+   <!-- 增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增 -->
+   
+ 
+   <!-- 添加章节 -->
+   
+   <insert id="addChapter" parameterType="Chapter">
+    
+     insert into 
+     
+     chapter(section,title,content,createtime) 
+     
+     values(#{section},#{title},#{content},#{createtime})
+  
+   </insert>
+   
+   <!-- 批量添加>>>>>>>>>>>>>>>>>>>>批量添加<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<批量添加 -->
+   
+   <!-- 改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改 -->
+    
+    
+   <!-- 删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删 -->
+  
+   
+   <!-- 根据id删除章节 -->
+  
+   <delete id="deleteChapterById" parameterType="Chapter">
+   
+   </delete>
+   
+   <!-- 批量删除>>>>>>>>>>>>>>>>>>>>批量删除<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<批量删除 -->
+  
+   <!-- 根据ids批量删除章节 -->
+  
+   <delete id="delteChapterByIds" parameterType="ChapterQueryVo">
+  
+   </delete>
+ 
+</mapper>

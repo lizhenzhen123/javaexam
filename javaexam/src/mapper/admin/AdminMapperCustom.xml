@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.admin.AdminMapperCustom" >
+
+   <!-- 根据admin查询用户 -->
+   <select id="findAdminByAdmin" resultType="AdminCustom" parameterType="AdminQueryVo">
+     select * from admin 
+     <where>
+       <if test="admin.account!=null and admin.password!=null">
+          account=#{admin.account} and password=#{admin.password}
+       </if>
+     </where>
+   </select>
+  
+</mapper>
