@@ -8,9 +8,7 @@
    <!-- 根据id查询章节 -->
    
    <select id="findChapterCustomById" parameterType="Chapter" resultType="ChapterCustom">
-   
      select * from chapter  where id=#{id}
-   
    </select>
    
    <!-- 批量查询>>>>>>>>>>>>>>>>>>>>批量查询<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<批量查询 -->
@@ -18,12 +16,10 @@
    <!-- 查询所有章节 -->
    <select id="findAllChapter" resultType="Chapter">
      select * from chapter
-   </select>
-   
+   </select> 
    <!-- 根据ids批量查询 -->
    
    <select id="findChapterByIds" parameterType="java.util.List" resultType="Chapter">
-   
       select * 
       from chapter
       <where>
@@ -34,32 +30,37 @@
            #{item.id} 
          </foreach>
        </if>
-     </where>
-    
+     </where>  
    </select> 
   
    
    <!-- 增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增增 -->
-   
  
    <!-- 添加章节 -->
-   
    <insert id="addChapter" parameterType="Chapter">
-    
      insert into 
-     
      chapter(section,title,content,createtime) 
-     
      values(#{section},#{title},#{content},#{createtime})
-  
    </insert>
    
    <!-- 批量添加>>>>>>>>>>>>>>>>>>>>批量添加<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<批量添加 -->
+   <!-- 批量添加章节 -->
+   <insert id="addMulChapter" parameterType="java.util.List">
+     insert into
+     chapter(section,title,content,createtime)
+     values
+     <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.section},#{item.title},#{item.content},#{item.createtime})
+     </foreach>
+     
+   </insert>
    
    <!-- 改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改改 -->
     
     
    <!-- 删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删删 -->
+   
+   
   
    
    <!-- 根据id删除章节 -->
